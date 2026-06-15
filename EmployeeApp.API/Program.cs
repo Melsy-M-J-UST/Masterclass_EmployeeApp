@@ -1,7 +1,12 @@
 //phase1
 //here, application is being bootstrapped.
 using EmployeeApp.API.Data;
+using EmployeeApp.API.Mappings;
 using EmployeeApp.API.Middlewares;
+using EmployeeApp.API.Repository;
+using EmployeeApp.API.Repository.Implementation;
+using EmployeeApp.API.Services;
+using EmployeeApp.API.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args); //identify config files, creates a host
@@ -17,6 +22,13 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbCon"));
 });
+builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService,EmployeeService>();
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
 
 var app = builder.Build();
 

@@ -20,9 +20,7 @@ namespace EmployeeApp.API.Models
         public decimal Salary { get; set; }
         //[Phone]
         [RegularExpression("[9876][0-9]{9}")]
-        public string?  Mobile { get; set; }
-        [EmailAddress]
-        public string? Email { get; set; }
+       
         public int DeptId { get; set; }
         [ForeignKey("DeptId")]
         public Department? Department { get; set; }
