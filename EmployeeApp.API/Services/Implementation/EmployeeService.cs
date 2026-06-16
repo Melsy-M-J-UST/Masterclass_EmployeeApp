@@ -10,7 +10,7 @@ namespace EmployeeApp.API.Services.Implementation
         public async Task<EmployeeDto> AddAsync(EmployeeDto entity)
         {
             var employee = mapper.Map<Employee>(entity);
-            var savedEntity = repository.CreateAsync(employee);
+            var savedEntity = await repository.CreateAsync(employee);
             return mapper.Map<EmployeeDto>(savedEntity);
         }
 

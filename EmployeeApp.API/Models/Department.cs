@@ -6,7 +6,7 @@ namespace EmployeeApp.API.Models
     {
         public int DepartmentId { get; set; }
         [Required]
-        public string DepartmentName { get; set; }
-        public string Location { get; set; }
+        public string DepartmentName { get; set; } = string.Empty;
+        public string Location { get; set; } 
     }
 }
