@@ -16,7 +16,6 @@ namespace EmployeeApp.API.Dto
         [RegularExpression("(Male|Female)", ErrorMessage = "Gender should be either")]
         public string Gender { get; set; } = "Male";
              public decimal Salary { get; set; }
-            [RegularExpression("[9876][0-9]{9}")]
             public int DeptId { get; set; }
         }
     }

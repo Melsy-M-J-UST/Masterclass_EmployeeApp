@@ -41,7 +41,7 @@ namespace EmployeeApp.API.Repository.Implementation
 
         public async Task<T?> UpdateAsync(int id,T entity, CancellationToken ct = default)
         {
-            var existing = await _context.Set<T>().FindAsync([entity],ct);
+            var existing = await _context.Set<T>().FindAsync([id],ct);
 
             if(existing == null) { return null; }
             //_context.Entry(existing).State = EntityState.Detached;

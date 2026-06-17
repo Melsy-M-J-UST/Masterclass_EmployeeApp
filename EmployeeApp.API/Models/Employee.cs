@@ -18,8 +18,6 @@ namespace EmployeeApp.API.Models
         //decimal 18 digits supporting
         [Precision(18,2)]
         public decimal Salary { get; set; }
-        //[Phone]
-        [RegularExpression("[9876][0-9]{9}")]
        
         public int DeptId { get; set; }
         [ForeignKey("DeptId")]

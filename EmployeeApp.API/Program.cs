@@ -29,6 +29,9 @@ options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase)
 builder.Services.AddOpenApi();//swashbuckle for swagger. delete this
 //upto here phase 1
 //all the registrations in phase 1
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbCon"));
@@ -68,7 +71,7 @@ builder.Services.AddAutoMapper(cfg =>
 
 
 var app = builder.Build();
-
+app.UseExceptionHandler();
 using (var scope = app.Services.CreateScope()) { 
 
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
