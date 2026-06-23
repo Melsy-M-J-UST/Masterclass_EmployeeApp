@@ -1,5 +1,5 @@
 ﻿using Azure.Core;
-using EmployeeApp.API.Dto;
+using EmployeeApp.Shared.Dto;
 using EmployeeApp.API.Services;
 using EmployeeApp.API.Services.Implementation;
 using Microsoft.AspNetCore.Http;
@@ -31,8 +31,8 @@ namespace EmployeeApp.API.Controllers
             }
             AuthResponse response = new AuthResponse
             {
-                accesstoken = token,
-                message = message,
+                AccessToken = token,
+                Message = message,
                 ExpiresIn = ExpiresIn
             };
             return Ok(response);

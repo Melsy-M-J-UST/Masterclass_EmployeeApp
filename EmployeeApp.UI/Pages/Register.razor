@@ -1,0 +1,47 @@
+﻿@page "/register"
+@inject HttpClient Http
+
+<h3 class=" text-primary">Register</h3>
+<div class=" = " col-4">
+    <EditForm Model="RegisterRequest" OnInvalidSubmit="HandleRegister">
+        <div class="mb-2">
+            <label class="fw-bold">Email</label>
+            <InputText typeof="password" class="form-control" @bind-Value="RegisterRequest.Email"></InputText>
+            <ValidationMessage For="() => RegisterRequest.Email" />
+        </div>
+        <div class="mb-2">
+            <label class="fw-bold">Password</label>
+            <InputText typeof="password" class="form-control" @bind-Value="RegisterRequest.Password"></InputText>
+            <ValidationMessage For="() => RegisterRequest.Password" />
+        </div>
+        <div class="mb-2">
+            <label class="fw-bold">Confirm Password</label>
+            <InputText typeof="password" class="form-control" @bind-Value="RegisterRequest.ConfirmPassword"></InputText>
+            <ValidationMessage For="() => RegisterRequest.ConfirmPassword" />
+        </div>
+        <div class="mb-2">
+            <InputSelect class="form-control border-dark" @bind-Value="RegisterRequest.Role">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+            </InputSelect>
+        </div>
+        <div>
+            <button class="btn btn-primary">Register</button>
+        </div>
+    </EditForm>
+</div>
+@code {
+    private RegisterDto RegisterRequest = new();
+    private async Task HandleRegister()
+    {
+        var response = await Http.PostAsJsonAsync("api/auth/register", RegisterRequest);
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("User Registered successfully");
+        }
+        else
+        {
+            Console.WriteLine("Registration Failed");
+        }
+    }
+}

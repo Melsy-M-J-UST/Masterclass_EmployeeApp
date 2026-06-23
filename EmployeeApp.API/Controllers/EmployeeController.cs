@@ -1,4 +1,4 @@
-﻿using EmployeeApp.API.Dto;
+﻿using EmployeeApp.Shared.Dto;
 using EmployeeApp.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

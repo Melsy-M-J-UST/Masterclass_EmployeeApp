@@ -1,0 +1,57 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IJSRuntime js
+@inject CustomAuthenticationStateProvider AuthStateProvider 
+@inherits LayoutComponentBase
+<div class="page">
+    @* <div class="sidebar">
+        <NavMenu />
+    </div> *@
+    <nav class=" navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="">EmployeeApp</a>
+        <ul class="navbar-nav">
+            <AuthorizeView>
+                <Authorized>
+            <li class="nav-item">
+            <NavLink class="nav-link" href ="employees">EmployeeList</NavLink>
+            </li>
+            <AuthorizeView Roles="Admin">
+                <Authorized Context="adminContext">
+            <li class="nav-item">
+                <NavLink class="nav-link" href="Add">AddEmployee</NavLink>
+            </li>
+            </Authorized>
+            </AuthorizeView>
+                    <button class=" btn btn-link">Log Out</button>
+                </Authorized>
+            <NotAuthorized>
+            <li class="nav-item">
+                <NavLink class="nav-link" href="Login">Login</NavLink>
+            </li>
+            <li class="nav-item">
+                <NavLink class="nav-link" href="Register">Register</NavLink>
+                    </li>
+                    </NotAuthorized>
+            </AuthorizeView>
+        </ul>
+
+    </nav>
+    <main>
+        @* <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div> *@
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+@code{
+    private async Task HandleLogout()
+    {
+        await js.InvokeVoidAsync("localStorage.removeItem", "token");
+        var identity = new ClaimsIdentity();
+        var principal = new ClaimsPrincipal(identity);
+        AuthStateProvider.NotifyUserLoggedOut();
+    } 
+}

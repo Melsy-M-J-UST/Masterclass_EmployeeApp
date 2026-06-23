@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="EmployeeApp.API/EmployeeApp.API.csproj" />
+  <Project Path="EmployeeApp.Shared/EmployeeApp.Shared.csproj" Id="ded03cca-012a-481b-bb3f-fc34433bfca8" />
+  <Project Path="EmployeeApp.UI/EmployeeApp.UI.csproj" Id="fed68f06-c836-4d84-9692-26fe605c1c9b" />
 </Solution>

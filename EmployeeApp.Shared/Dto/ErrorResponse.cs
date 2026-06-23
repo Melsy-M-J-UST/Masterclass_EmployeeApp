@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace EmployeeApp.API.Dto
+namespace EmployeeApp.Shared.Dto
 {
     public class ErrorResponse
     {

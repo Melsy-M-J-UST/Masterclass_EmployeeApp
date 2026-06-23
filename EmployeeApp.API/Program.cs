@@ -64,6 +64,14 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService,EmployeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddCors(p =>
+{
+    p.AddPolicy("CorsPolicy", cfg =>
+    {
+        cfg.WithOrigins("url").AllowAnyHeader().AllowAnyMethod();
+        //AllowanyOrigin allows all
+    });
+});
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<MappingProfile>();

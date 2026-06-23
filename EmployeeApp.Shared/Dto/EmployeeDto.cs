@@ -1,9 +1,7 @@
-﻿using EmployeeApp.API.Models;
-using Microsoft.EntityFrameworkCore;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EmployeeApp.API.Dto
+namespace EmployeeApp.Shared.Dto
 {
     public class EmployeeDto
     {
