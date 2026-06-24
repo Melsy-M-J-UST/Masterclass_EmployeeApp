@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EmployeeApp.API.Dto;
+using EmployeeApp.Shared.Dto;
 using EmployeeApp.API.Models;
 using EmployeeApp.API.Repository;
 

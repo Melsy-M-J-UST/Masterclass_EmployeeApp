@@ -1,5 +1,5 @@
 ﻿using Azure.Core;
-using EmployeeApp.API.Dto;
+using EmployeeApp.Shared.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

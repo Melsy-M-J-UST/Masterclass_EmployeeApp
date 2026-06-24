@@ -11,14 +11,14 @@ namespace EmployeeApp.API.Controllers
     public class EmployeeController(IEmployeeService service) : ControllerBase
     {
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var result = await service.GetAllAsync();
             return Ok(result);
         }
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Admin")]
         public async Task<IActionResult> GetById([FromRoute]int id)
         {
             var result = await service.GetByIdAsync(id);

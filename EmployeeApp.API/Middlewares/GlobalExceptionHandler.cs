@@ -1,4 +1,4 @@
-﻿using EmployeeApp.API.Dto;
+﻿using EmployeeApp.Shared.Dto;
 using EmployeeApp.API.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using System.ComponentModel.DataAnnotations;

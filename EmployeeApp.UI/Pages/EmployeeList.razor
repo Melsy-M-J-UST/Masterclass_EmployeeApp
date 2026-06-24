@@ -1,0 +1,61 @@
+﻿@page "/employees"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject HttpClient http
+@inject IJSRuntime JS
+<h3 class=" text-primary">EmployeeList</h3>
+@if(Employees == null)
+{
+    <p>Loading........</p>
+}
+else
+{
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th> Name</th>
+                    <th> Gender</th>
+                    <th> Age</th>
+                    <th> salary</th>
+                    <th>ACtions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emp in Employees)
+                {
+                    <tr>
+                        <td> @emp.Id</td>
+                        <td> @emp.Name</td>
+                        <td> @emp.Gender</td>
+                        <td> @emp.Age</td>
+                        <td> @emp.Salary</td>
+                        <td>                            
+                            @* <NavLink class=" btn btn-outline-primary" href="edit/@emp.Id">Edit</NavLink> *@
+                            <NavLink class=" btn btn-outline-primary" href="("@($:edit/{emp.Id}")">Edit</NavLink>
+                            <AuthorizeView Roles="User,Admin">
+                            <button @onclick"()=>handleDelete(emp.Id)"> Delete</button>
+                            </AuthorizeView>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+@code {
+    private List<EmployeeDto> Employees;
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "token");
+        http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        Employees = await http.GetFromJsonAsync<List<EmployeeDto>>("api/employees");
+    }   
+    private async Task HandleDelete()
+    {
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "token");
+        http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        @* Employees = await http.DeleteAsync($"api/employees/{id}");
+        Employees.RemoveAll(x => x.Id == id); *@
+    }
+}

@@ -1,6 +1,6 @@
 ﻿@page "/register"
 @inject HttpClient Http
-
+@inject NavigationManager Nav
 <h3 class=" text-primary">Register</h3>
 <div class=" = " col-4">
     <EditForm Model="RegisterRequest" OnInvalidSubmit="HandleRegister">
@@ -11,12 +11,12 @@
         </div>
         <div class="mb-2">
             <label class="fw-bold">Password</label>
-            <InputText typeof="password" class="form-control" @bind-Value="RegisterRequest.Password"></InputText>
+            <InputText type="password" class="form-control" @bind-Value="RegisterRequest.Password"></InputText>
             <ValidationMessage For="() => RegisterRequest.Password" />
         </div>
         <div class="mb-2">
             <label class="fw-bold">Confirm Password</label>
-            <InputText typeof="password" class="form-control" @bind-Value="RegisterRequest.ConfirmPassword"></InputText>
+            <InputText type="password" class="form-control" @bind-Value="RegisterRequest.ConfirmPassword"></InputText>
             <ValidationMessage For="() => RegisterRequest.ConfirmPassword" />
         </div>
         <div class="mb-2">
@@ -38,6 +38,7 @@
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("User Registered successfully");
+            Nav.NavigateTo("login");
         }
         else
         {

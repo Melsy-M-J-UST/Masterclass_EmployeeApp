@@ -1,4 +1,4 @@
-﻿using EmployeeApp.API.Dto;
+﻿using EmployeeApp.Shared.Dto;
 
 namespace EmployeeApp.API.Services
 {
